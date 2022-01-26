@@ -2,7 +2,43 @@
 ////// CALCULATOR //////
 ////////////////////////
 
-// CODE HERE
+
+//function declaration
+function add(num1, num2){
+    return num1 + num2
+}
+
+//arrow function
+const subtract = (num1, num2) => num1 - num2
+
+
+
+
+// One line arrow function w/ implicit return
+const multiply = (num1, num2) => num1 * num2
+
+
+// fuction expression
+const divide = function(num1, num2){
+    return num1 / num2
+}
+
+
+
+
+const calculator = (num1, num2, callback) => {
+    if(+num1 && +num2){
+        num1 = +num1
+        num2 = +num2
+        return callback(num1, num2)
+    } else {
+        console.log('you need to send in munbers')
+    }
+}
+
+const result = calculator(1, 2, divide)
+// console.log(result)
+
 
 
 ///////////////////////
@@ -63,8 +99,38 @@ const catProducts = [
   }
 ]
 
-// CODE HERE
+const applyPercentDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice * (1 - discount)
+}
 
+const applyFlatRateDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice - discount
+}
+
+const applyDiscounts = (arr, callback, discount) => {
+    arr.forEach(product => {
+        callback(product, discount)
+    })
+}
+
+
+// applyDiscounts(dogProducts, applyPercentDiscount, .1)
+// console.log(dogProducts)
+
+// applyDiscounts(catProducts, applyFlatRateDiscount, 2)
+// console.log(catProducts)
+
+const applyDiscountsByCategory = (arr, category, callback, discount) =>{
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i].category === category){
+            callback(arr[i], discount)
+        }
+    }
+}
+
+// applyDiscountsByCategory(catProducts, 2, applyPercentDiscount, .15)
+// applyDiscountsByCategory(dogProducts, 1, applyFlatRateDiscount, 2)
+// console.log(dogProducts)
 
 
 ////////////////////////
@@ -138,7 +204,12 @@ const copyArrToSnakeCase = arr => {
 
 const colors = ['red', 'blue', 'yellow', 'green', 'orange']
 
-const mappedColors // = colors.map()
+const callback = () => 'pink'
+
+const mappedColors = colors.map(callback)
+
+
+// console.log(mappedColors)
 
 /*
     Edit the formalGreeting function and use the built in .map method 
@@ -151,8 +222,13 @@ const mappedColors // = colors.map()
 const formalNames = ['Bernard', 'Elizabeth', 'Conrad', 'Mary Margaret']
 
 const formalGreeting = names => {
-    // CODE HERE
+    let GreetingNames = names.map(name => {
+        return 'Hello, ' + name
+    })
+
+    return GreetingNames
 }
+// console.log(formalGreeting(formalNames))
 
 // Call formalGreeting passing in the formalNames array
 
@@ -166,7 +242,9 @@ const formalGreeting = names => {
 
 const places = ['Binghampton', 'Albany', 'New York', 'Ithaca', 'Auburn', 'Rochester', 'Buffalo']
 
-const placesThatStartWithA // = places.filter()
+const placesThatStartWithA  = places.filter(place => place.startsWith('A'))
+
+// console.log(placesThatStartWithA)
 
 
 /*
@@ -191,11 +269,18 @@ let jobs = [
 
 // Do not edit the code above.
 
-// CODE HERE
+const identifier = (arr) => {
+    let steve = arr.filter(person => {
+        console.log('This is an iteration of filter', person)
+        return person.programmer
+    })
+    console.log(steve)
+    return steve[0]
+}
 
 // call the function passing in the jobs array
 
-
+// console.log(identifier(jobs))
 //// REDUCE ////
 
 /*
@@ -209,10 +294,12 @@ let jobs = [
 const numsToReduce = [43, 7, 24, 79, 290]
 
 const productOfArray = numbers => {
-    // Code here
+    return numbers.reduce((acc, elem) => {
+        return acc + elem
+    })
 }
 
-// CODE HERE
+console.log
 
 
 // call productOfArray passing in numsToReduce
@@ -244,4 +331,4 @@ const expenses = [
     }
 ]
 
-const remaining // = expenses.reduce(//callback, //initial value)
+// const remaining // = expenses.reduce(//callback, //initial value)
